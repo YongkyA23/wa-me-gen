@@ -6,9 +6,10 @@ import "./App.css";
 function App() {
   const [phoneNumber, setPhoneNumber] = useState("");
   const [waLink, setWaLink] = useState("");
-  const [showNotice, setShowNotice] = useState(false);
-  const [inputError, setInputError] = useState(false);
-  const [linkCopied, setLinkCopied] = useState(false);
+  const [noticeMessage, setNoticeMessage] = useState(""); // Add state for message
+  // const [inputError, setInputError] = useState(false);
+  // const [linkCopied, setLinkCopied] = useState(false);
+  const [noticeVisible, setNoticeVisible] = useState(false); // Add state to control visibility of notice
 
   const handlePhoneChange = (value) => {
     setPhoneNumber(value);
@@ -17,18 +18,28 @@ function App() {
   const generateLink = () => {
     if (phoneNumber) {
       setWaLink(`https://wa.me/${phoneNumber}`);
-      setShowNotice(true);
-      setInputError(false);
+      setNoticeMessage("Link generated successfully!");
+      setNoticeVisible(true);
+      setTimeout(() => {
+        setNoticeVisible(false);
+      }, 3000);
     } else {
       setWaLink("");
-      setShowNotice(false);
-      setInputError(true);
+      setNoticeVisible(true);
+      setNoticeMessage("Please enter a phone number");
+      setTimeout(() => {
+        setNoticeVisible(false);
+      }, 3000);
     }
   };
 
   const copyLink = () => {
     navigator.clipboard.writeText(waLink);
-    setLinkCopied(true);
+    setNoticeVisible(true);
+    setNoticeMessage("Link Copied");
+    setTimeout(() => {
+      setNoticeVisible(false);
+    }, 3000);
   };
 
   return (
@@ -41,19 +52,22 @@ function App() {
           onChange={handlePhoneChange}
           defaultCountry="ID"
         />
-        {inputError && (
-          <p className="error-notice">Please enter a phone number</p>
-        )}
-        <button onClick={generateLink}>Generate WhatsApp Link</button>
-        {showNotice && (
-          <p className="notice">
-            {linkCopied ? "Link Copied!" : "Link generated successfully!"}
-          </p>
+
+        <button className="genBtn" onClick={generateLink}>
+          Generate WhatsApp Link
+        </button>
+        {noticeVisible && (
+          <div
+            className={`floating-notice 
+                    ${noticeVisible ? "animate-in" : "animate-out"}`}
+          >
+            {noticeMessage}
+          </div>
         )}
         {waLink && (
           <div className="buttons">
             <a href={waLink} target="_blank" rel="noopener noreferrer">
-              Open Link
+              <span>Open Link</span>
             </a>
             <button onClick={copyLink}>Copy Link</button>
           </div>
