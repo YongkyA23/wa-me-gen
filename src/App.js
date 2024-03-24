@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import PhoneInput from "react-phone-number-input";
 import "react-phone-number-input/style.css";
-import "./App.css"; // Adjust the path if necessary
+import "./App.css";
 
 function App() {
   const [phoneNumber, setPhoneNumber] = useState("");
@@ -33,7 +33,7 @@ function App() {
 
   return (
     <div>
-      <h1>WhatsApp Contact Link Converter</h1>
+      <h1>Send WhatsApp Without Saving The Number</h1>
       <div className="converter">
         <PhoneInput
           placeholder="Enter phone number"
@@ -55,7 +55,7 @@ function App() {
             <a href={waLink} target="_blank" rel="noopener noreferrer">
               Open Link
             </a>
-            <button onClick={copyLink}>Copy Link</button> {/* Add the button */}
+            <button onClick={copyLink}>Copy Link</button>
           </div>
         )}
       </div>
