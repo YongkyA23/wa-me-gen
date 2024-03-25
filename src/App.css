@@ -17,7 +17,7 @@ h1 {
   font-family: "Tauri", sans-serif;
   font-weight: 400;
   font-style: normal;
-  overflow-y: hidden;
+  /* overflow-y: hidden; */
   /* overflow-x: hidden; */
 }
 
@@ -84,7 +84,7 @@ h1 {
 }
 
 .converter a + button {
-  margin-left: 10px;
+  margin-left: 5px;
 }
 
 .converter .buttons {
