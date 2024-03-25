@@ -6,10 +6,15 @@ import "./App.css";
 function App() {
   const [phoneNumber, setPhoneNumber] = useState("");
   const [waLink, setWaLink] = useState("");
-  const [noticeMessage, setNoticeMessage] = useState(""); // Add state for message
-  // const [inputError, setInputError] = useState(false);
-  // const [linkCopied, setLinkCopied] = useState(false);
-  const [noticeVisible, setNoticeVisible] = useState(false); // Add state to control visibility of notice
+
+  const [noticeMessageGenerate, setNoticeMessageGenerate] = useState("");
+  const [noticeVisibleGenerate, setNoticeVisibleGenerate] = useState(false);
+
+  const [noticeMessageCopy, setNoticeMessageCopy] = useState("");
+  const [noticeVisibleCopy, setNoticeVisibleCopy] = useState(false);
+
+  const [noticeMessageError, setNoticeMessageError] = useState("");
+  const [noticeVisibleError, setNoticeVisibleError] = useState(false);
 
   const handlePhoneChange = (value) => {
     setPhoneNumber(value);
@@ -18,27 +23,32 @@ function App() {
   const generateLink = () => {
     if (phoneNumber) {
       setWaLink(`https://wa.me/${phoneNumber}`);
-      setNoticeMessage("Link generated successfully!");
-      setNoticeVisible(true);
+      setNoticeMessageGenerate("Link generated successfully!");
+      setNoticeVisibleGenerate(true);
+      setNoticeVisibleCopy(false); // Reset copy notice visibility
+      setNoticeVisibleError(false);
       setTimeout(() => {
-        setNoticeVisible(false);
+        setNoticeVisibleGenerate(false);
       }, 3000);
     } else {
       setWaLink("");
-      setNoticeVisible(true);
-      setNoticeMessage("Please enter a phone number");
+      setNoticeVisibleError(true);
+      setNoticeVisibleCopy(false);
+      setNoticeVisibleGenerate(false);
+      setNoticeMessageError("Please enter a phone number");
       setTimeout(() => {
-        setNoticeVisible(false);
+        setNoticeVisibleError(false);
       }, 3000);
     }
   };
-
   const copyLink = () => {
     navigator.clipboard.writeText(waLink);
-    setNoticeVisible(true);
-    setNoticeMessage("Link Copied");
+    setNoticeVisibleCopy(true);
+    setNoticeVisibleError(false);
+    setNoticeVisibleGenerate(false);
+    setNoticeMessageCopy("Link Copied");
     setTimeout(() => {
-      setNoticeVisible(false);
+      setNoticeVisibleCopy(false);
     }, 3000);
   };
 
@@ -56,14 +66,27 @@ function App() {
         <button className="genBtn" onClick={generateLink}>
           Generate WhatsApp Link
         </button>
-        {noticeVisible && (
-          <div
-            className={`floating-notice 
-                    ${noticeVisible ? "animate-in" : "animate-out"}`}
-          >
-            {noticeMessage}
-          </div>
-        )}
+        <div
+          className={`floating-notice ${
+            noticeVisibleGenerate ? "animate-in" : ""
+          } ${!noticeVisibleGenerate ? "animate-out" : ""}`}
+        >
+          {noticeMessageGenerate}
+        </div>
+        <div
+          className={`floating-notice ${
+            noticeVisibleCopy ? "animate-in" : ""
+          } ${!noticeVisibleCopy ? "animate-out" : ""}`}
+        >
+          {noticeMessageCopy}
+        </div>
+        <div
+          className={`floating-notice ${
+            noticeVisibleError ? "animate-in" : ""
+          } ${!noticeVisibleError ? "animate-out" : ""}`}
+        >
+          {noticeMessageError}
+        </div>
         {waLink && (
           <div className="buttons">
             <a href={waLink} target="_blank" rel="noopener noreferrer">
