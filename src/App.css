@@ -14,7 +14,8 @@ h1 {
 }
 
 * {
-  font-family: "Tauri", sans-serif;
+  font-family: Courier New, Courier, Lucida Sans Typewriter, Lucida Typewriter,
+    monospace;
   font-weight: 400;
   font-style: normal;
   /* overflow-y: hidden; */
@@ -29,13 +30,15 @@ h1 {
   padding: 20px;
   border-radius: 5px;
   background-color: #fff;
-  width: 70%;
+  width: 525px;
+  max-width: 525px;
+  min-width: 525px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
   margin: 0 auto;
 }
 
 .converter input[type="tel"] {
-  width: 390px;
+  width: 450px;
   padding: 15px;
   margin: 5px 0px 5px 0px;
   border: 1px solid #ddd;
@@ -70,7 +73,7 @@ h1 {
 .converter a {
   background-color: #000000;
   color: white;
-  padding: 10px 20px;
+  padding: 9px 20px;
   text-decoration: none;
   display: inline-block;
   border-radius: 5px;
@@ -96,7 +99,7 @@ h1 {
 }
 
 .converter .buttons a {
-  width: 40%;
+  width: 41%;
 }
 
 .converter .buttons span {
