@@ -1,8 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import PhoneInput from "react-phone-number-input";
 import "react-phone-number-input/style.css";
+import { ReactTyped } from "react-typed";
 import "./App.css";
-
 
 function App() {
   const [phoneNumber, setPhoneNumber] = useState("");
@@ -55,7 +55,16 @@ function App() {
 
   return (
     <div>
-      <h1>Send WhatsApp Without Saving The Number</h1>
+      <h1>
+        <ReactTyped
+          strings={["Send WhatsApp Message Without Saving the Number"]}
+          typeSpeed={100}
+          loop
+          backSpeed={20}
+          cursorChar="|"
+          showCursor={true}
+        />
+      </h1>
       <div className="converter">
         <PhoneInput
           placeholder="Enter phone number"
