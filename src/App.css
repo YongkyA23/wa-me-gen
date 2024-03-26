@@ -168,10 +168,13 @@ h1 {
 }
 
 @media only screen and (max-width: 768px) {
+  body {
+    min-height: 85vh;
+  }
   .converter {
-    width: 295px;
-    min-width: 295px;
-    max-width: 295px;
+    width: 290px;
+    min-width: 290px;
+    max-width: 290px;
     padding: 10px;
   }
 
@@ -181,7 +184,7 @@ h1 {
   }
 
   .converter input[type="tel"] {
-    width: 220px;
+    width: 215px;
   }
   .converter button {
     width: 100%;
