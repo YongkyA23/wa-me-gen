@@ -54,6 +54,17 @@ h1 {
   font-size: 16px;
 }
 
+textarea {
+  width: 488px;
+  padding: 15px;
+  min-width: 488px;
+  max-width: 488px;
+  margin: 5px 0px 5px 0px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  font-size: 16px;
+}
+
 .converter button {
   background-color: #000000;
   color: #fff;
@@ -155,7 +166,6 @@ h1 {
   100% {
     opacity: 0;
     transform: translateX(-50%) translateY(100%);
-    display: none;
   }
 }
 
@@ -181,10 +191,17 @@ h1 {
   h1 {
     font-size: 20px;
     height: 50px;
+    margin-bottom: 10px;
   }
 
   .converter input[type="tel"] {
-    width: 215px;
+    width: 217.5px;
+  }
+
+  textarea {
+    width: 258px;
+    min-width: 258px;
+    max-width: 258px;
   }
   .converter button {
     width: 100%;

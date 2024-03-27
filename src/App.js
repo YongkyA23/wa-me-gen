@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState} from "react";
 import PhoneInput from "react-phone-number-input";
 import "react-phone-number-input/style.css";
 import { ReactTyped } from "react-typed";
@@ -7,6 +7,7 @@ import "./App.css";
 function App() {
   const [phoneNumber, setPhoneNumber] = useState("");
   const [waLink, setWaLink] = useState("");
+  const [message, setMessage] = useState(""); // State for message text
 
   const [noticeMessageGenerate, setNoticeMessageGenerate] = useState("");
   const [noticeVisibleGenerate, setNoticeVisibleGenerate] = useState(false);
@@ -21,6 +22,9 @@ function App() {
     setPhoneNumber(value);
   };
 
+  const handleMessageChange = (event) => {
+    setMessage(event.target.value); // Update message state
+  };
   const generateLink = () => {
     if (phoneNumber) {
       setWaLink(`https://wa.me/${phoneNumber}`);
@@ -71,6 +75,12 @@ function App() {
           value={phoneNumber}
           onChange={handlePhoneChange}
           defaultCountry="ID"
+        />
+        <textarea
+          placeholder="Enter your message"
+          value={message}
+          onChange={handleMessageChange}
+          className="message-textbox"
         />
 
         <button className="genBtn" onClick={generateLink}>
