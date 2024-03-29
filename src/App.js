@@ -1,4 +1,4 @@
-import React, { useState} from "react";
+import React, { useState, useEffect } from "react";
 import PhoneInput from "react-phone-number-input";
 import "react-phone-number-input/style.css";
 import { ReactTyped } from "react-typed";
@@ -8,6 +8,7 @@ function App() {
   const [phoneNumber, setPhoneNumber] = useState("");
   const [waLink, setWaLink] = useState("");
   const [message, setMessage] = useState(""); // State for message text
+  const [showMessage, setShowMessage] = useState(false); // State for toggling message box
 
   const [noticeMessageGenerate, setNoticeMessageGenerate] = useState("");
   const [noticeVisibleGenerate, setNoticeVisibleGenerate] = useState(false);
@@ -25,6 +26,18 @@ function App() {
   const handleMessageChange = (event) => {
     setMessage(event.target.value); // Update message state
   };
+
+  const toggleMessage = () => {
+    if (!showMessage) {
+      setMessage(""); // Clear message content if showing message box
+    }
+    setShowMessage(!showMessage); // Toggle message box visibility
+  };
+
+  useEffect(() => {
+    setNoticeVisibleGenerate(false);
+  }, []);
+
   const generateLink = () => {
     if (phoneNumber) {
       setWaLink(`https://wa.me/${phoneNumber}`);
@@ -46,6 +59,7 @@ function App() {
       }, 3000);
     }
   };
+
   const copyLink = () => {
     navigator.clipboard.writeText(waLink);
     setNoticeVisibleCopy(true);
@@ -76,14 +90,23 @@ function App() {
           onChange={handlePhoneChange}
           defaultCountry="ID"
         />
-        <textarea
-          placeholder="Enter your message"
-          value={message}
-          onChange={handleMessageChange}
-          className="message-textbox"
-        />
-
-        <button className="genBtn" onClick={generateLink}>
+        {showMessage && (
+          <textarea
+            placeholder="Enter your message"
+            value={message}
+            onChange={handleMessageChange}
+            className="message-textbox"
+          />
+        )}
+        <button className="add-message-btn" onClick={toggleMessage}>
+          {showMessage ? "Hide Message" : "Add Message"}{" "}
+          <i
+            className={`fas ${
+              showMessage ? "fa-circle-minus" : "fa-circle-plus"
+            }`}
+          ></i>
+        </button>
+        <button className="genBtn btn" onClick={generateLink}>
           Generate WhatsApp Link
         </button>
         <div
@@ -112,7 +135,9 @@ function App() {
             <a href={waLink} target="_blank" rel="noopener noreferrer">
               <span>Open Link</span>
             </a>
-            <button onClick={copyLink}>Copy Link</button>
+            <button className="btn " onClick={copyLink}>
+              Copy Link
+            </button>
           </div>
         )}
       </div>

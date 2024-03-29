@@ -65,7 +65,7 @@ textarea {
   font-size: 16px;
 }
 
-.converter button {
+.converter .btn {
   background-color: #000000;
   color: #fff;
   border: 2px solid black;
@@ -133,16 +133,14 @@ textarea {
 
 .floating-notice {
   position: fixed;
-  bottom: -100px;
+  bottom: 20px;
   left: 50%;
-  /* transform: translateX(-100%); */
-  background-color: #ffffff; /* Success color */
+  background-color: #ffffff;
   color: rgb(0, 0, 0);
   padding: 15px;
   border-radius: 5px;
-  z-index: 1000; /* Ensure it's on top */
-  opacity: 0; /* Initially hide the notice */
-  /* display: none; */
+  z-index: 1000;
+  opacity: 0;
 }
 
 @keyframes slideIn {
@@ -152,8 +150,6 @@ textarea {
   }
   100% {
     opacity: 1;
-    display: block;
-    bottom: 20px;
     transform: translateX(-50%) translateY(0);
   }
 }
@@ -175,6 +171,18 @@ textarea {
 
 .animate-out {
   animation: slideOut 0.5s ease forwards; /* Animation for slide-out */
+}
+
+.add-message-btn {
+  background: none;
+  border: none;
+  color: #000;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.add-message-btn i {
+  margin-left: 5px; /* Adjust spacing between text and icon */
 }
 
 @media only screen and (max-width: 768px) {
