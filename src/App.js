@@ -21,10 +21,12 @@ function App() {
 
   const handlePhoneChange = (value) => {
     setPhoneNumber(value);
+    setWaLink("");
   };
 
   const handleMessageChange = (event) => {
     setMessage(event.target.value); // Update message state
+    setWaLink("");
   };
 
   const toggleMessage = () => {
@@ -40,7 +42,12 @@ function App() {
 
   const generateLink = () => {
     if (phoneNumber) {
-      setWaLink(`https://wa.me/${phoneNumber}`);
+      let link = `https://wa.me/${phoneNumber}`;
+      if (showMessage && message.trim() !== "") {
+        const encodedMessage = encodeURIComponent(message);
+        link += `?text=${encodedMessage}`;
+      }
+      setWaLink(link);
       setNoticeMessageGenerate("Link generated successfully!");
       setNoticeVisibleGenerate(true);
       setNoticeVisibleCopy(false); // Reset copy notice visibility
