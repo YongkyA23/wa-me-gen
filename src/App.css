@@ -1,5 +1,13 @@
+:root {
+  --primary-color: #2563eb;
+  --primary-dark: #1e40af;
+  --text-color: #1f2937;
+  --card-bg: #ffffff;
+  --bg-gradient: linear-gradient(135deg, #f8fafc, #e2e8f0);
+}
+
 body {
-  background: linear-gradient(135deg, #000000, #434343);
+  background: var(--bg-gradient);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -7,189 +15,162 @@ body {
   margin: 0;
 }
 
+#root {
+  width: 100%;
+}
+
 h1 {
-  margin-bottom: 20px;
+  margin-bottom: 1.5rem;
   text-align: center;
-  color: white;
+  color: var(--text-color);
+  min-height: 3rem;
+}
+
+.app {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 * {
-  font-family: "Lato", sans-serif;
-  font-weight: 400;
-  font-style: normal;
-  /* overflow-y: hidden; */
-  /* overflow-x: hidden; */
+  box-sizing: border-box;
+  font-family: "Inter", sans-serif;
 }
 
 .converter {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  padding: 20px;
-  border-radius: 5px;
-  background-color: #fff;
-  width: 520px;
-  max-width: 520px;
-  min-width: 520px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  gap: 1rem;
+  align-items: stretch;
+  padding: 2rem;
+  border-radius: 1rem;
+  background-color: var(--card-bg);
+  width: 100%;
+  max-width: 480px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
   margin: 0 auto;
 }
 
-.hello {
-  font-family: "Courier New", Courier, "Lucida Sans Typewriter",
-    "Lucida Typewriter", monospace;
-  font-weight: 400;
-  font-style: normal;
-  color: white;
+.converter .PhoneInput {
+  width: 100%;
 }
 
-.converter input[type="tel"] {
-  width: 445px;
-  padding: 15px;
-  margin: 5px 0px 5px 0px;
-  border: 1px solid #ddd;
-  border-radius: 5px;
-  font-size: 16px;
-}
-
+.converter input[type="tel"],
 textarea {
-  width: 488px;
-  padding: 15px;
-  min-width: 488px;
-  max-width: 488px;
-  margin: 5px 0px 5px 0px;
-  border: 1px solid #ddd;
-  border-radius: 5px;
-  font-size: 16px;
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border: 1px solid #d1d5db;
+  border-radius: 0.5rem;
+  font-size: 1rem;
+}
+
+.converter input[type="tel"]:focus,
+textarea:focus {
+  outline: none;
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.3);
+}
+
+.add-message-btn {
+  background: none;
+  border: none;
+  color: var(--primary-color);
+  font-size: 1rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 0;
+  align-self: center;
+  width: auto;
 }
 
 .converter .btn {
-  background-color: #000000;
+  background-color: var(--primary-color);
   color: #fff;
-  border: 2px solid black;
-  padding: 12px 20px;
-  border-radius: 5px;
-  font-size: 16px;
+  border: none;
+  padding: 0.75rem 1rem;
+  border-radius: 0.5rem;
+  font-size: 1rem;
   cursor: pointer;
   width: 100%;
   transition: background-color 0.3s ease;
-  margin-bottom: 0px;
-}
-
-.genBtn {
-  margin-top: 5px;
-  margin-bottom: 10px;
-}
-
-.converter button:hover {
-  background-color: #ffffff;
-  color: #000000;
-  border-color: black;
-}
-
-.converter a {
-  background-color: #000000;
-  color: white;
-  padding: 12px 20px;
   text-decoration: none;
-  display: inline-block;
-  border-radius: 5px;
-  border: 2px solid black;
-  transition: background-color 0.3s ease;
-}
-
-.converter a:hover {
-  background-color: #ffffff;
-  color: #000000;
-}
-
-.converter a + button {
-  margin-left: 5px;
-}
-
-.converter .buttons {
-  display: flex;
-  align-items: center;
+  display: inline-flex;
   justify-content: center;
+  align-items: center;
+}
+
+.converter .btn:hover {
+  background-color: var(--primary-dark);
+}
+
+.buttons {
+  display: flex;
+  gap: 0.5rem;
   width: 100%;
-  margin-top: 5px;
 }
 
-.converter .buttons a {
-  width: 41%;
-}
-
-.converter .buttons span {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.converter .buttons button {
-  width: 50%;
+.buttons a,
+.buttons button {
+  flex: 1;
 }
 
 .floating-notice {
   position: fixed;
   bottom: 20px;
   left: 50%;
-  background-color: #ffffff;
-  color: rgb(0, 0, 0);
+  transform: translateX(-50%);
+  background-color: var(--card-bg);
+  color: var(--text-color);
   padding: 15px;
-  border-radius: 5px;
+  border-radius: 0.5rem;
   z-index: 1000;
   opacity: 0;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
 @keyframes slideIn {
   0% {
     opacity: 0;
-    transform: translateX(-50%) translateY(100%);
+    transform: translate(-50%, 100%);
   }
   100% {
     opacity: 1;
-    transform: translateX(-50%) translateY(0);
+    transform: translate(-50%, 0);
   }
 }
 
 @keyframes slideOut {
   0% {
     opacity: 1;
-    transform: translateX(-50%) translateY(0);
+    transform: translate(-50%, 0);
   }
   100% {
     opacity: 0;
-    transform: translateX(-50%) translateY(100%);
+    transform: translate(-50%, 100%);
   }
 }
 
 .animate-in {
-  animation: slideIn 0.5s ease forwards; /* Animation for slide-in */
+  animation: slideIn 0.5s ease forwards;
 }
 
 .animate-out {
-  animation: slideOut 0.5s ease forwards; /* Animation for slide-out */
-}
-
-.add-message-btn {
-  background: none;
-  border: none;
-  color: #000;
-  font-size: 16px;
-  cursor: pointer;
-}
-
-.add-message-btn i {
-  margin-left: 5px; /* Adjust spacing between text and icon */
+  animation: slideOut 0.5s ease forwards;
 }
 
 .qr-wrapper {
-  margin: 15px 0;
+  margin: 1rem 0;
+  align-self: center;
+  display: flex;
+  justify-content: center;
+  width: 100%;
 }
 
 .clearBtn {
-  margin-top: 5px;
+  margin-top: 0.5rem;
 }
 
 @media only screen and (max-width: 768px) {
@@ -197,37 +178,6 @@ textarea {
     min-height: 85vh;
   }
   .converter {
-    width: 290px;
-    min-width: 290px;
-    max-width: 290px;
-    padding: 10px;
-  }
-
-  h1 {
-    font-size: 20px;
-    height: 50px;
-    margin-bottom: 10px;
-  }
-
-  .converter input[type="tel"] {
-    width: 217.5px;
-  }
-
-  textarea {
-    width: 258px;
-    min-width: 258px;
-    max-width: 258px;
-  }
-  .converter button {
-    width: 100%;
-  }
-
-  .converter a {
-    width: 100%;
-    padding: 12px 10px;
-  }
-
-  .floating-notice {
-    text-align: center;
+    padding: 1.5rem;
   }
 }
