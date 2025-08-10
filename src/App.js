@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import PhoneInput from "react-phone-number-input";
 import "react-phone-number-input/style.css";
 import { ReactTyped } from "react-typed";
+import QRCode from "qrcode.react";
 import "./App.css";
 
 function App() {
@@ -78,6 +79,13 @@ function App() {
     }, 3000);
   };
 
+  const clearAll = () => {
+    setPhoneNumber("");
+    setMessage("");
+    setWaLink("");
+    setShowMessage(false);
+  };
+
   return (
     <div>
       <h1>
@@ -138,14 +146,22 @@ function App() {
           {noticeMessageError}
         </div>
         {waLink && (
-          <div className="buttons">
-            <a href={waLink} target="_blank" rel="noopener noreferrer">
-              <span>Open Link</span>
-            </a>
-            <button className="btn " onClick={copyLink}>
-              Copy Link
+          <>
+            <div className="buttons">
+              <a href={waLink} target="_blank" rel="noopener noreferrer">
+                <span>Open Link</span>
+              </a>
+              <button className="btn " onClick={copyLink}>
+                Copy Link
+              </button>
+            </div>
+            <div className="qr-wrapper">
+              <QRCode value={waLink} size={128} />
+            </div>
+            <button className="btn clearBtn" onClick={clearAll}>
+              Clear
             </button>
-          </div>
+          </>
         )}
       </div>
     </div>
