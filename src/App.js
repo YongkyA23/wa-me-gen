@@ -110,7 +110,6 @@ function App() {
             placeholder="Enter your message"
             value={message}
             onChange={handleMessageChange}
-            className="message-textbox"
           />
         )}
         <button className="add-message-btn" onClick={toggleMessage}>
@@ -148,10 +147,15 @@ function App() {
         {waLink && (
           <>
             <div className="buttons">
-              <a href={waLink} target="_blank" rel="noopener noreferrer">
-                <span>Open Link</span>
+              <a
+                className="btn"
+                href={waLink}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Open Link
               </a>
-              <button className="btn " onClick={copyLink}>
+              <button className="btn" onClick={copyLink}>
                 Copy Link
               </button>
             </div>
