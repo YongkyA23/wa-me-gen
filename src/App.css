@@ -1,5 +1,5 @@
 body {
-  background-color: #000000;
+  background: linear-gradient(135deg, #000000, #434343);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -182,6 +182,14 @@ textarea {
 
 .add-message-btn i {
   margin-left: 5px; /* Adjust spacing between text and icon */
+}
+
+.qr-wrapper {
+  margin: 15px 0;
+}
+
+.clearBtn {
+  margin-top: 5px;
 }
 
 @media only screen and (max-width: 768px) {
