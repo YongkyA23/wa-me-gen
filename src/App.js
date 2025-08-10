@@ -87,7 +87,7 @@ function App() {
   };
 
   return (
-    <div>
+    <div className="app">
       <h1>
         <ReactTyped
           strings={["Send WhatsApp Message Without Saving the Number"]}

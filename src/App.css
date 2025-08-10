@@ -15,10 +15,24 @@ body {
   margin: 0;
 }
 
+#root {
+  width: 100%;
+}
+
 h1 {
   margin-bottom: 1.5rem;
   text-align: center;
   color: var(--text-color);
+
+  min-height: 3rem;
+}
+
+.app {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
 }
 
 * {
@@ -70,6 +84,9 @@ textarea:focus {
   align-items: center;
   gap: 0.25rem;
   padding: 0;
+  align-self: center;
+  width: auto;
+
 }
 
 .converter .btn {
@@ -149,6 +166,12 @@ textarea:focus {
 
 .qr-wrapper {
   margin: 1rem 0;
+
+  align-self: center;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+
 }
 
 .clearBtn {
