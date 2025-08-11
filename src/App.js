@@ -57,6 +57,7 @@ function App() {
 
   useEffect(() => {
 
+
     localStorage.setItem("templates", JSON.stringify(templates));
 
     const theme = darkMode ? "dark" : "light";

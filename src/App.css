@@ -146,6 +146,26 @@ textarea:focus {
   flex: 1;
 }
 
+.template-controls {
+  display: flex;
+  gap: 0.5rem;
+  width: 100%;
+}
+
+.template-controls select {
+  flex: 1;
+  padding: 0.75rem 1rem;
+  border: 1px solid #d1d5db;
+  border-radius: 0.5rem;
+  font-size: 1rem;
+}
+
+.template-controls select:focus {
+  outline: none;
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.3);
+}
+
 .floating-notice {
   position: fixed;
   bottom: 20px;
