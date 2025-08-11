@@ -10,6 +10,8 @@ function App() {
   const [waLink, setWaLink] = useState("");
   const [message, setMessage] = useState(""); // State for message text
   const [showMessage, setShowMessage] = useState(false); // State for toggling message box
+  const [templates, setTemplates] = useState([]); // Saved message templates
+  const [selectedTemplate, setSelectedTemplate] = useState("");
 
   const [noticeMessageGenerate, setNoticeMessageGenerate] = useState("");
   const [noticeVisibleGenerate, setNoticeVisibleGenerate] = useState(false);
@@ -39,7 +41,15 @@ function App() {
 
   useEffect(() => {
     setNoticeVisibleGenerate(false);
+    const storedTemplates = JSON.parse(
+      localStorage.getItem("templates") || "[]"
+    );
+    setTemplates(storedTemplates);
   }, []);
+
+  useEffect(() => {
+    localStorage.setItem("templates", JSON.stringify(templates));
+  }, [templates]);
 
   const generateLink = () => {
     if (phoneNumber) {
@@ -86,6 +96,32 @@ function App() {
     setShowMessage(false);
   };
 
+  const saveTemplate = () => {
+    if (message.trim() !== "") {
+      setTemplates([...templates, message]);
+    }
+  };
+
+  const handleTemplateSelect = (event) => {
+    const index = event.target.value;
+    setSelectedTemplate(index);
+    const template = templates[index];
+    setMessage(template);
+    if (!showMessage) {
+      setShowMessage(true);
+    }
+  };
+
+  const deleteTemplate = () => {
+    if (selectedTemplate !== "") {
+      const newTemplates = templates.filter(
+        (_, idx) => idx !== parseInt(selectedTemplate)
+      );
+      setTemplates(newTemplates);
+      setSelectedTemplate("");
+    }
+  };
+
   return (
     <div className="app">
       <h1>
@@ -120,6 +156,33 @@ function App() {
             }`}
           ></i>
         </button>
+        {templates.length > 0 && (
+          <div className="template-controls">
+            <select
+              value={selectedTemplate}
+              onChange={handleTemplateSelect}
+            >
+              <option value="">Select a template</option>
+              {templates.map((temp, idx) => (
+                <option key={idx} value={idx}>
+                  {temp}
+                </option>
+              ))}
+            </select>
+            <button
+              className="btn"
+              onClick={deleteTemplate}
+              disabled={selectedTemplate === ""}
+            >
+              Delete Template
+            </button>
+          </div>
+        )}
+        {showMessage && (
+          <button className="btn" onClick={saveTemplate}>
+            Save Current Message
+          </button>
+        )}
         <button className="genBtn btn" onClick={generateLink}>
           Generate WhatsApp Link
         </button>
