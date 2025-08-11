@@ -20,6 +20,10 @@ function App() {
   const [noticeMessageError, setNoticeMessageError] = useState("");
   const [noticeVisibleError, setNoticeVisibleError] = useState(false);
 
+  const [darkMode, setDarkMode] = useState(
+    () => localStorage.getItem("theme") === "dark"
+  );
+
   const handlePhoneChange = (value) => {
     setPhoneNumber(value);
     setWaLink("");
@@ -37,9 +41,19 @@ function App() {
     setShowMessage(!showMessage); // Toggle message box visibility
   };
 
+  const toggleDarkMode = () => {
+    setDarkMode((prev) => !prev);
+  };
+
   useEffect(() => {
     setNoticeVisibleGenerate(false);
   }, []);
+
+  useEffect(() => {
+    const theme = darkMode ? "dark" : "light";
+    document.documentElement.setAttribute("data-theme", theme);
+    localStorage.setItem("theme", theme);
+  }, [darkMode]);
 
   const generateLink = () => {
     if (phoneNumber) {
@@ -88,6 +102,9 @@ function App() {
 
   return (
     <div className="app">
+      <button className="theme-toggle" onClick={toggleDarkMode}>
+        {darkMode ? "Light Mode" : "Dark Mode"}
+      </button>
       <h1>
         <ReactTyped
           strings={["Send WhatsApp Message Without Saving the Number"]}
